@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/practiceLayout"
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
+    tools:context=".ActivityGamePractice"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/back_practice_btn"
+            android:clickable="true"
+            android:focusable="true" />
+
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
+
+        <ImageView
+            android:id="@+id/shuffle_btn_practice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/shuffle_practice_btn"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="350dp"
+        android:layout_height="380dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        android:elevation="40dp"
+        android:outlineAmbientShadowColor="#AA00FF"
+        android:outlineSpotShadowColor="#AA00FF"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="40dp"
+        android:visibility="visible">
+
+        <GridLayout
+            android:id="@+id/gridContainer2"
+            android:layout_width="360dp"
+            android:layout_height="380dp"
+            android:layout_gravity="center"
+            android:background="@drawable/gradient">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="0"
+                android:layout_rowWeight="1"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons1"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="00"
+                android:text="1"
+                android:textColor="#fff"
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="0"
+                android:layout_rowWeight="1"
+                android:layout_column="2"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons2"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="01"
+                android:textColor="#fff"
+
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="0"
+                android:layout_rowWeight="1"
+                android:layout_column="3"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons3"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="02"
+                android:textColor="#fff"
+
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="0"
+                android:layout_rowWeight="1"
+                android:layout_column="4"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons4"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="03"
+                android:textColor="#fff"
+
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="1"
+                android:layout_rowWeight="1"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons5"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="10"
+                android:textColor="#fff"
+
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn6"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="1"
+                android:layout_rowWeight="1"
+                android:layout_column="2"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons6"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="11"
+                android:textColor="#fff"
+
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn7"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="1"
+                android:layout_rowWeight="1"
+                android:layout_column="3"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons7"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="12"
+                android:textColor="#fff"
+
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn8"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="1"
+                android:layout_rowWeight="1"
+                android:layout_column="4"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons8"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="13"
+                android:textColor="#fff"
+
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn9"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="2"
+                android:layout_rowWeight="1"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons9"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="20"
+                android:textColor="#fff"
+
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn10"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="2"
+                android:layout_rowWeight="1"
+                android:layout_column="2"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons10"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="21"
+                android:textColor="#fff"
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn11"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="2"
+                android:layout_rowWeight="1"
+                android:layout_column="3"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons11"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="22"
+                android:textColor="#fff"
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn12"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="2"
+                android:layout_rowWeight="1"
+                android:layout_column="4"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons12"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="23"
+                android:textColor="#fff"
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn13"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="3"
+                android:layout_rowWeight="1"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons13"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="30"
+                android:textColor="#fff"
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn14"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="3"
+                android:layout_rowWeight="1"
+                android:layout_column="2"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons14"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="31"
+                android:textColor="#fff"
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn15"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="3"
+                android:layout_rowWeight="1"
+                android:layout_column="3"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons15"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="32"
+                android:textColor="#fff"
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn16"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_row="3"
+                android:layout_rowWeight="1"
+                android:layout_column="4"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_corner_buttons16"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="buttonClick"
+                android:tag="33"
+                android:textColor="#fff"
+                android:textSize="40sp"
+                android:textStyle="bold">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+
+        </GridLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="2.5" >
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="LARGE_BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            tools:ignore="MissingClass">
+        </com.google.android.gms.ads.AdView>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Puzzle15</string>
+    <string name="save_quit"><![CDATA[Save Game]]></string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Do you want to finish ?</string>
+    <string name="time_has_stopped">Time has stopped !</string>
+    <string name="Continue">Continue</string>
+    <string name="quit_game">Quit game</string>
+    <string name="no">No</string>
+    <string name="about_button_info">15 puzzle is a type of sliding puzzle that consists of a frame of numbered square tiles in random order with one tile missing. The goal of the game is to rearrange the tiles to a specific order (usually ascending) by sliding the tiles horizontally or vertically into the blank space. The player can only move tiles that are adjacent to the blank space and the game is won when the tiles are arranged in the correct order. This type of game is also known as the "15-tile puzzle" or "Gem Puzzle" and it has been around for over a century, and it is still popular among all ages. </string>
+    <string name="yes">Yes</string>
+    <string name="do_you_want_to_remove_n_your_all_game_datas">Do you want to remove\n your all Game datas ?</string>
+</resources>
