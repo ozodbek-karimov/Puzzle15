@@ -47,7 +47,6 @@ public class ActivityGameEntry extends AppCompatActivity {
         gameSettings = GameSettings.getInstance(this);
 
 
-        binding.startGame.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_start));
         binding.startGame.setOnClickListener(v -> {
 
             gameSettings.vibrate();

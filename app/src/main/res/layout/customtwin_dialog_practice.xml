@@ -38,8 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/bowlby_one_sc"
-                android:text="YOU WIN "
-                android:textColor="#FF0000"
+                android:text="YOU WIN ! "
+                android:textColor="#FFD600"
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/bowlby_one_sc"
                 android:text="CONGRATULATION !"
-                android:textColor="#FF0000"
+                android:textColor="#FFD600"
                 android:textSize="29sp"
                 android:textStyle="bold" />
 

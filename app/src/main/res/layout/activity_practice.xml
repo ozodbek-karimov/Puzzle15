@@ -10,7 +10,7 @@
     tools:context=".ActivityGamePractice"
     >
 
-    <View
+    <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
@@ -18,10 +18,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1.4"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_weight="0.9"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/statusbarline2"
         android:orientation="horizontal">
-        <View
+        <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5" />
@@ -31,29 +34,29 @@
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center"
             android:background="@drawable/back_practice_btn"
             android:clickable="true"
             android:focusable="true" />
 
 
 
-        <View
+        <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.4" />
 
 
         <ImageView
             android:id="@+id/shuffle_btn_practice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center"
             android:background="@drawable/shuffle_practice_btn"
             android:clickable="true"
             android:focusable="true" />
 
-        <View
+        <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5" />

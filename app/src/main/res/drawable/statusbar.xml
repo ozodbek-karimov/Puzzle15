@@ -3,12 +3,12 @@
 
     <item>
         <shape>
-            <solid android:color="#000000"/>
+            <solid android:color="#517FF0"/>
             <corners
-                android:bottomLeftRadius="20dp"
-                android:bottomRightRadius="20dp"
-                android:topLeftRadius="0dp"
-                android:topRightRadius="0dp" />
+                android:bottomLeftRadius="10dp"
+                android:bottomRightRadius="10dp"
+                android:topLeftRadius="10dp"
+                android:topRightRadius="10dp" />
         </shape>
     </item>
 </selector>

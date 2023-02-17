@@ -3,13 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/gradient"
     tools:context=".SplashScreenLoading">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/play_animation"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_progress="1.5"
+        app:lottie_rawRes="@raw/loading" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/seekBar"
+        android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
         android:text="Loading..."
@@ -33,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
+        android:textColor="@color/black"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="10dp"
         android:text="0%"

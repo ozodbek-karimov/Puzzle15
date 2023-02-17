@@ -32,16 +32,17 @@
                 app:lottie_progress="1.5"
                 app:lottie_rawRes="@raw/winner_animation" />
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/bowlby_one_sc"
-                android:text="YOU WIN "
+                android:text="YOU WIN !"
+                android:layout_margin="10dp"
                 android:textColor="#FFD600"
                 android:textSize="27sp"
                 android:textStyle="bold" />
+
 
             <TextView
                 android:id="@+id/awardWords"
@@ -50,11 +51,17 @@
                 android:fontFamily="@font/bowlby_one_sc"
                 android:text="CONGRATULATION !"
                 android:textColor="#FFD600"
+                android:layout_margin="5dp"
                 android:textSize="31sp"
                 android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/statusbarline2"
                 android:orientation="horizontal">
                 <Space
                     android:layout_width="0dp"
@@ -69,7 +76,7 @@
                     android:text="Time :"
                     android:gravity="center"
                     android:textColor="#E5EFEE"
-                    android:textSize="25sp"
+                    android:textSize="27sp"
                     android:textStyle="bold" />
 
 
@@ -82,7 +89,7 @@
                     android:text="00:00"
                     android:gravity="center"
                     android:textColor="#E5EFEE"
-                    android:textSize="25sp"
+                    android:textSize="27sp"
                     android:textStyle="bold" />
                 <Space
                     android:layout_width="0dp"
@@ -96,6 +103,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/statusbarline2"
                 android:orientation="horizontal">
 
                 <Space
@@ -110,7 +120,7 @@
                     android:text=" Step  : "
                     android:gravity="center"
                     android:textColor="#E5EFEE"
-                    android:textSize="25sp"
+                    android:textSize="27sp"
                     android:textStyle="bold" />
 
 
@@ -123,7 +133,7 @@
                     android:fontFamily="@font/fredoka_one"
                     android:text="0"
                     android:textColor="#E5EFEE"
-                    android:textSize="25sp"
+                    android:textSize="27sp"
                     android:textStyle="bold" />
 
                 <Space
@@ -187,7 +197,7 @@
                 android:id="@+id/rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="11dp"
+                android:layout_marginBottom="13dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
