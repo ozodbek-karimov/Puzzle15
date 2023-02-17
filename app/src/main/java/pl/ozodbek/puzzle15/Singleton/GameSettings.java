@@ -4,6 +4,7 @@ package pl.ozodbek.puzzle15.Singleton;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
@@ -17,7 +18,7 @@ import pl.ozodbek.puzzle15.R;
 @SuppressWarnings("ALL")
 public class GameSettings {
     private static GameSettings instance;
-    private final int gameBtnSound, dialogBtnSound, statusBtnSound, saveBtnSound, gameOverBtn, gameWinBtn;
+    private final int gameBtnSound, dialogBtnSound, statusBtnSound, saveBtnSound, gameWinBtn;
     private boolean soundEnabled, musicEnabled, vibrationEnabled, themeEnabled;
     private final SoundPool soundPool;
     private final Vibrator vibrator;
@@ -39,15 +40,14 @@ public class GameSettings {
         vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE); // VIBRATSIYA SERVISI
         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);               // OVOZ SERVISI
 
-
         // ESHTRILADIGAN OVOZLAR ,ULARNI SHU SINGLETON NOMI GLOBAL OZGARUVCHI QIB ELON QILINGAN SHU OVOZLARNING
         // GETTERLARI ORQALI CHQIRILADI..
-        gameBtnSound = soundPool.load(context, R.raw.game_button_sound, 1);
+        gameBtnSound = soundPool.load(context, R.raw.swap_sound, 1);
         dialogBtnSound = soundPool.load(context, R.raw.dialog_button_sounds, 1);
         statusBtnSound = soundPool.load(context, R.raw.status_button_sound, 1);
         saveBtnSound = soundPool.load(context, R.raw.save_button_sound, 1);
-        gameOverBtn = soundPool.load(context, R.raw.game_over_sound, 1);
-        gameWinBtn = soundPool.load(context, R.raw.practice_win_sound, 1);
+        gameWinBtn = soundPool.load(context, R.raw.winner_sound, 1);
+
 
 
         // SHAREDPREFERCES-DAN  "gameSettings" NOMLI JOY OCHILADI, CONTEX NEGA ISHLATILGANI TEPADA AYTILDI
@@ -154,10 +154,6 @@ public class GameSettings {
 
     public int getSaveBtnSound() {
         return saveBtnSound;
-    }
-
-    public int getGameOverBtn() {
-        return gameOverBtn;
     }
 
     public int getGameWinBtn() {

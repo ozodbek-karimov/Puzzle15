@@ -50,16 +50,16 @@ import pl.ozodbek.puzzle15.Models.GameControl;
 import pl.ozodbek.puzzle15.Singleton.GameSettings;
 import pl.ozodbek.puzzle15.databinding.ActivityGameScreenBinding;
 import pl.ozodbek.puzzle15.databinding.CustomdialogQuitBinding;
+import pl.ozodbek.puzzle15.databinding.CustomdialogSettingsBinding;
 import pl.ozodbek.puzzle15.databinding.CustomdialogShuffleBinding;
 import pl.ozodbek.puzzle15.databinding.CustomdialogStopStartBinding;
 import pl.ozodbek.puzzle15.databinding.CustomtwinDialogBinding;
 
 public class ActivityGameScreen extends AppCompatActivity implements GameControl {
-
     private ActivityGameScreenBinding binding;
     private AppCompatButton emptyButton;
     private GameSettings gameSettings;
-    private SharedPreferences sharedPref;
+    private SharedPreferences sharedPref, sharedPreferences;
     private MediaPlayer mediaPlayer1;
     private final List<Integer> numbers = new ArrayList<>();
     private int x = 3, y = 3, counter = 1, steps = 0;
@@ -79,7 +79,6 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
         gameSettings = GameSettings.getInstance(this);
         backgroundMusic();
         showAddMob();
-        setPlayer();
         loadNumbers();
         generateNumbers();
 
@@ -88,10 +87,11 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
             gameSettings.vibrate();
             gameSettings.playSound(gameSettings.getStatusBtnSound());
             binding.card.setVisibility(View.INVISIBLE);
-            binding.namePlayer.setVisibility(View.INVISIBLE);
             pausedTimeShuffle = SystemClock.elapsedRealtime() - binding.timer.getBase();
             binding.timer.stop();
-
+            if (mediaPlayer1 != null && mediaPlayer1.isPlaying()) {
+                mediaPlayer1.pause();
+            }
 
             AlertDialog.Builder builderSecond = new AlertDialog.Builder(this);
             CustomdialogShuffleBinding customDialogSecond = CustomdialogShuffleBinding.inflate(getLayoutInflater());
@@ -106,8 +106,11 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
             customDialogSecond.no.setOnClickListener(v4 -> {
                 gameSettings.vibrate();
                 gameSettings.playSound(gameSettings.getDialogBtnSound());
+                if (mediaPlayer1 != null && isPlaying1 && isSwitchOn1) {
+                    mediaPlayer1.setLooping(true);
+                    mediaPlayer1.start();
+                }
                 binding.card.setVisibility(View.VISIBLE);
-                binding.namePlayer.setVisibility(View.VISIBLE);
                 binding.timer.setBase(SystemClock.elapsedRealtime() - pausedTimeShuffle);
                 binding.timer.start();
                 dialogSecond.dismiss();
@@ -119,8 +122,14 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
             customDialogSecond.yes.setOnClickListener(v3 -> {
                 gameSettings.vibrate();
                 gameSettings.playSound(gameSettings.getSaveBtnSound());
+                binding.timer.setBase(SystemClock.elapsedRealtime() - pausedTimeShuffle);
                 binding.card.setVisibility(View.VISIBLE);
-                binding.namePlayer.setVisibility(View.VISIBLE);
+                binding.timer.setBase(SystemClock.elapsedRealtime() - pausedTimeShuffle);
+                binding.timer.start();
+                if (mediaPlayer1 != null && isPlaying1 && isSwitchOn1) {
+                    mediaPlayer1.setLooping(true);
+                    mediaPlayer1.start();
+                }
 
                 for (int i = 0; i < binding.gridContainer2.getChildCount(); i++) {
                     binding.gridContainer2.getChildAt(i).setVisibility(View.VISIBLE);
@@ -142,7 +151,9 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
             gameSettings.vibrate();
             gameSettings.playSound(gameSettings.getStatusBtnSound());
             binding.card.setVisibility(View.INVISIBLE);
-            binding.namePlayer.setVisibility(View.INVISIBLE);
+            if (mediaPlayer1 != null && mediaPlayer1.isPlaying()) {
+                mediaPlayer1.pause();
+            }
 
             pausedTime = SystemClock.elapsedRealtime() - binding.timer.getBase();
             binding.pauseResume.setBackgroundResource(R.drawable.play_button);
@@ -157,11 +168,42 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
             dialogFirst.getWindow().setWindowAnimations(fade_in);
             dialogFirst.setCancelable(false);
 
+            customDialogFirst.settingsGame.setOnClickListener(p -> {
+                gameSettings.vibrate();
+                gameSettings.playSound(gameSettings.getStatusBtnSound());
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                CustomdialogSettingsBinding settings = CustomdialogSettingsBinding.inflate(getLayoutInflater());
+                builder.setView(settings.getRoot());
+
+                AlertDialog dialog = builder.create();
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.getWindow().setWindowAnimations(R.anim.fade_in);
+
+                settings.musicSwitch.setOn(isSwitchOn1);
+                settings.vibrationSwitch.setOn(gameSettings.isVibrationEnabled());
+                settings.soundSwitch.setOn(gameSettings.isSoundEnabled());
+
+                settings.musicSwitch.setOnToggledListener((buttonView, isChecked) -> toggleSwitch1(isChecked));
+                settings.soundSwitch.setOnToggledListener((buttonView, isChecked) -> {
+                    gameSettings.setSoundEnabled(isChecked);
+                });
+                settings.vibrationSwitch.setOnToggledListener((buttonView, isChecked) -> {
+                    gameSettings.setVibrationEnabled(isChecked);
+                });
+
+                dialog.show();
+
+            });
+
             customDialogFirst.continuee.setOnClickListener(v1 -> {
                 gameSettings.vibrate();
                 gameSettings.playSound(gameSettings.getDialogBtnSound());
                 binding.card.setVisibility(View.VISIBLE);
-                binding.namePlayer.setVisibility(View.VISIBLE);
+                if (mediaPlayer1 != null && isPlaying1 && isSwitchOn1) {
+                    mediaPlayer1.setLooping(true);
+                    mediaPlayer1.start();
+                }
 
                 binding.timer.setBase(SystemClock.elapsedRealtime() - pausedTime);
                 binding.timer.start();
@@ -175,7 +217,6 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
                 gameSettings.vibrate();
                 gameSettings.playSound(gameSettings.getDialogBtnSound());
                 binding.card.setVisibility(View.INVISIBLE);
-                binding.namePlayer.setVisibility(View.INVISIBLE);
 
                 AlertDialog.Builder builderSecond = new AlertDialog.Builder(this);
                 CustomdialogQuitBinding customDialogSecond = CustomdialogQuitBinding.inflate(getLayoutInflater());
@@ -186,18 +227,22 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
                 AlertDialog dialogSecond = builderSecond.create();
                 dialogSecond.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialogSecond.getWindow().setWindowAnimations(fade_in);
+                dialogFirst.dismiss();
 
 
                 customDialogSecond.cancel.setOnClickListener(v4 -> {
                     gameSettings.vibrate();
                     gameSettings.playSound(gameSettings.getDialogBtnSound());
                     binding.card.setVisibility(View.VISIBLE);
-                    binding.namePlayer.setVisibility(View.VISIBLE);
                     binding.pauseResume.setBackgroundResource(R.drawable.pause_btn);
                     binding.timer.setBase(SystemClock.elapsedRealtime() - pausedTime);
                     binding.timer.start();
-                    dialogSecond.dismiss();
+                    if (mediaPlayer1 != null && isPlaying1 && isSwitchOn1) {
+                        mediaPlayer1.setLooping(true);
+                        mediaPlayer1.start();
+                    }
                     dialogFirst.dismiss();
+                    dialogSecond.dismiss();
 
                     dialogSecond.setOnDismissListener(dialog2 -> dialogSecond.getWindow().setWindowAnimations(R.anim.fade_out));
                 });
@@ -287,111 +332,19 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
             gameSettings.playSound(gameSettings.getGameWinBtn());
 
             binding.card.setVisibility(View.INVISIBLE);
-            binding.namePlayer.setVisibility(View.INVISIBLE);
             binding.timer.setVisibility(View.INVISIBLE);
             binding.stepsCount.setVisibility(View.INVISIBLE);
             binding.st.setVisibility(View.INVISIBLE);
             binding.pauseResume.setVisibility(View.INVISIBLE);
             binding.shuffleBtn.setVisibility(View.INVISIBLE);
+            binding.adView.setVisibility(View.INVISIBLE);
+            binding.confettiAnimation.setVisibility(View.VISIBLE);
             binding.timer.stop();
             mediaPlayer1.stop();
 
-
             // USER YUTSA OCHILADIGAN DIALOG
+            winDialog();
 
-            AlertDialog.Builder builderSecond = new AlertDialog.Builder(this);
-            CustomtwinDialogBinding customDialogSecond = CustomtwinDialogBinding.inflate(getLayoutInflater());
-            builderSecond.setCancelable(false);
-            builderSecond.setView(customDialogSecond.getRoot());
-
-            AlertDialog dialogSecond = builderSecond.create();
-            dialogSecond.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            dialogSecond.getWindow().setWindowAnimations(fade_in);
-
-            customDialogSecond.time.setText(formatTime(binding.timer));
-            customDialogSecond.score.setText(binding.stepsCount.getText().toString());
-
-            List<String> words = new ArrayList<>();
-            words.add("Incredible !!");
-            words.add("Amazing !!");
-            words.add("Wonderful !!");
-            words.add("Fantastic !!");
-            words.add("Exceptional !!");
-            words.add("Outstanding !!");
-            words.add("Impressive !!");
-            words.add("Phenomenal !!");
-            words.add("Marvelous !!");
-            words.add("Brilliant !!");
-
-            Collections.shuffle(words);
-            String shuffledWords = words.get(0);
-            customDialogSecond.awardWords.setText(shuffledWords);
-
-
-            customDialogSecond.again.setOnClickListener(v4 -> {
-                binding.card.setVisibility(View.VISIBLE);
-                binding.namePlayer.setVisibility(View.VISIBLE);
-                binding.timer.setVisibility(View.VISIBLE);
-                binding.stepsCount.setVisibility(View.VISIBLE);
-                binding.st.setVisibility(View.VISIBLE);
-                binding.pauseResume.setVisibility(View.VISIBLE);
-                binding.shuffleBtn.setVisibility(View.VISIBLE);
-
-                mediaPlayer1 = MediaPlayer.create(this, R.raw.backmusic);
-                if (isPlaying1 && isSwitchOn1) {
-                    mediaPlayer1.setLooping(true);
-                    mediaPlayer1.start();
-                }
-
-                gameSettings.vibrate();
-                gameSettings.playSound(gameSettings.getDialogBtnSound());
-
-
-                for (int i = 0; i < binding.gridContainer2.getChildCount(); i++) {
-                    binding.gridContainer2.getChildAt(i).setVisibility(View.VISIBLE);
-                }
-
-                steps = 0;
-                updateMoves(0);
-                generateNumbers();
-                dialogSecond.dismiss();
-
-                dialogSecond.setOnDismissListener(dialog2 -> {
-                    dialogSecond.getWindow().setWindowAnimations(R.anim.fade_out);
-                });
-            });
-
-
-            customDialogSecond.complete.setOnClickListener(v3 -> {
-                gameSettings.vibrate();
-                gameSettings.playSound(gameSettings.getStatusBtnSound());
-                startActivity(new Intent(this, ActivityGameEntry.class));
-                finish();
-            });
-            customDialogSecond.share.setOnClickListener(v4 -> {
-                gameSettings.vibrate();
-                gameSettings.playSound(gameSettings.getDialogBtnSound());
-
-                String message =
-
-                        "Hi👋, i just finished Puzzle 15 game with " + binding.stepsCount.getText().toString() +
-                                " steps💪, " + " during " + formatTime(binding.timer) +
-                                "⏰. Check out the game at: Play Market";
-
-                Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("text/plain");
-                share.putExtra(Intent.EXTRA_TEXT, message);
-                startActivity(Intent.createChooser(share, "Share the game with your friends"));
-
-
-            });
-            customDialogSecond.rate.setOnClickListener(b ->{
-                Snackbar.make(binding.gameLayout,"Coming soon ... ", Snackbar.LENGTH_SHORT)
-                        .setBackgroundTint(Color.WHITE)
-                        .show();
-
-            });
-            dialogSecond.show();
         }
     }
 
@@ -438,7 +391,7 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
 
     @Override
     public void backgroundMusic() {
-        SharedPreferences sharedPreferences = getSharedPreferences("music_prefs", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("music_prefs", MODE_PRIVATE);
 
         isPlaying1 = sharedPreferences.getBoolean("isPlaying1", true);
 
@@ -448,6 +401,24 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
         if (isPlaying1 && isSwitchOn1) {
             mediaPlayer1.setLooping(true);
             mediaPlayer1.start();
+        }
+    }
+
+    public void toggleSwitch1(boolean isChecked) {
+        isSwitchOn1 = isChecked;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isSwitchOn1", isSwitchOn1);
+        editor.apply();
+
+        if (isSwitchOn1) {
+            if (mediaPlayer1 != null) {
+                mediaPlayer1.setLooping(true);
+                mediaPlayer1.start();
+            }
+            isPlaying1 = true;
+        } else {
+            mediaPlayer1.pause();
+            isPlaying1 = false;
         }
     }
 
@@ -465,11 +436,6 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
 
         AdRequest adRequest = new AdRequest.Builder().build();
         binding.adView.loadAd(adRequest);
-    }
-
-    private void setPlayer() {
-        String player = getIntent().getStringExtra("Exported_name");
-        binding.playerName.setText(player);
     }
 
     private void updateMoves() {
@@ -492,6 +458,101 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
         return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
     }
 
+    @SuppressLint("ResourceType")
+    private void winDialog() {
+
+        AlertDialog.Builder builderSecond = new AlertDialog.Builder(this);
+        CustomtwinDialogBinding customDialogSecond = CustomtwinDialogBinding.inflate(getLayoutInflater());
+        builderSecond.setCancelable(false);
+        builderSecond.setView(customDialogSecond.getRoot());
+
+        AlertDialog dialogSecond = builderSecond.create();
+        dialogSecond.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialogSecond.getWindow().setWindowAnimations(fade_in);
+
+        customDialogSecond.time.setText(formatTime(binding.timer));
+        customDialogSecond.score.setText(binding.stepsCount.getText().toString());
+
+        List<String> words = new ArrayList<>();
+        words.add("Incredible !!");
+        words.add("Amazing !!");
+        words.add("Wonderful !!");
+        words.add("Fantastic !!");
+        words.add("Exceptional !!");
+        words.add("Outstanding !!");
+        words.add("Impressive !!");
+        words.add("Phenomenal !!");
+        words.add("Marvelous !!");
+        words.add("Brilliant !!");
+
+        Collections.shuffle(words);
+        String shuffledWords = words.get(0);
+        customDialogSecond.awardWords.setText(shuffledWords);
+        customDialogSecond.again.setOnClickListener(v4 -> {
+            binding.card.setVisibility(View.VISIBLE);
+            binding.timer.setVisibility(View.VISIBLE);
+            binding.stepsCount.setVisibility(View.VISIBLE);
+            binding.st.setVisibility(View.VISIBLE);
+            binding.pauseResume.setVisibility(View.VISIBLE);
+            binding.shuffleBtn.setVisibility(View.VISIBLE);
+            binding.adView.setVisibility(View.VISIBLE);
+            binding.confettiAnimation.setVisibility(View.GONE);
+
+            mediaPlayer1 = MediaPlayer.create(this, R.raw.backmusic);
+            if (isPlaying1 && isSwitchOn1) {
+                mediaPlayer1.setLooping(true);
+                mediaPlayer1.start();
+            }
+
+            gameSettings.vibrate();
+            gameSettings.playSound(gameSettings.getDialogBtnSound());
+
+
+            for (int i = 0; i < binding.gridContainer2.getChildCount(); i++) {
+                binding.gridContainer2.getChildAt(i).setVisibility(View.VISIBLE);
+            }
+
+            steps = 0;
+            updateMoves(0);
+            generateNumbers();
+            dialogSecond.dismiss();
+
+            dialogSecond.setOnDismissListener(dialog2 -> {
+                dialogSecond.getWindow().setWindowAnimations(R.anim.fade_out);
+            });
+        });
+        customDialogSecond.complete.setOnClickListener(v3 -> {
+            gameSettings.vibrate();
+            gameSettings.playSound(gameSettings.getStatusBtnSound());
+            startActivity(new Intent(this, ActivityGameEntry.class));
+            finish();
+        });
+        customDialogSecond.share.setOnClickListener(v4 -> {
+            gameSettings.vibrate();
+            gameSettings.playSound(gameSettings.getDialogBtnSound());
+
+            String message =
+
+                    "Hi👋, i just finished Puzzle 15 game with " + binding.stepsCount.getText().toString() +
+                            " steps💪, " + " during " + formatTime(binding.timer) +
+                            "⏰. Check out the game at: Play Market";
+
+            Intent share = new Intent(Intent.ACTION_SEND);
+            share.setType("text/plain");
+            share.putExtra(Intent.EXTRA_TEXT, message);
+            startActivity(Intent.createChooser(share, "Share the game with your friends"));
+
+
+        });
+        customDialogSecond.rate.setOnClickListener(b -> {
+            Snackbar.make(binding.gameLayout, "Coming soon ... ", Snackbar.LENGTH_SHORT)
+                    .setBackgroundTint(Color.WHITE)
+                    .show();
+
+        });
+        dialogSecond.show();
+    }
+
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -507,7 +568,6 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
         new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 1000);
 
     }
-
 
     @SuppressLint("ResourceType")
     @Override
@@ -527,11 +587,9 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
 
         long elapsedTime = SystemClock.elapsedRealtime() - binding.timer.getBase();
         String steps = binding.stepsCount.getText().toString();
-        String name = binding.playerName.getText().toString();
 
         editor.putLong("elapsed_time", elapsedTime);
         editor.putString("steps", steps);
-        editor.putString("name", name);
         editor.apply();
 
     }
@@ -544,9 +602,10 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
         gameSettings.vibrate();
         gameSettings.playSound(gameSettings.getStatusBtnSound());
         binding.card.setVisibility(View.INVISIBLE);
-        binding.namePlayer.setVisibility(View.INVISIBLE);
-
         binding.pauseResume.setBackgroundResource(R.drawable.play_button);
+        if (mediaPlayer1 != null && mediaPlayer1.isPlaying()) {
+            mediaPlayer1.pause();
+        }
 
         AlertDialog.Builder builderFirst = new AlertDialog.Builder(this);
         CustomdialogStopStartBinding customDialogFirst = CustomdialogStopStartBinding.inflate(getLayoutInflater());
@@ -557,12 +616,42 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
         dialogFirst.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialogFirst.getWindow().setWindowAnimations(fade_in);
         dialogFirst.setCancelable(false);
+        customDialogFirst.settingsGame.setOnClickListener(p -> {
+            gameSettings.vibrate();
+            gameSettings.playSound(gameSettings.getStatusBtnSound());
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            CustomdialogSettingsBinding settings = CustomdialogSettingsBinding.inflate(getLayoutInflater());
+            builder.setView(settings.getRoot());
+
+            AlertDialog dialog = builder.create();
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            dialog.getWindow().setWindowAnimations(R.anim.fade_in);
+
+            settings.musicSwitch.setOn(isSwitchOn1);
+            settings.vibrationSwitch.setOn(gameSettings.isVibrationEnabled());
+            settings.soundSwitch.setOn(gameSettings.isSoundEnabled());
+
+            settings.musicSwitch.setOnToggledListener((buttonView, isChecked) -> toggleSwitch1(isChecked));
+            settings.soundSwitch.setOnToggledListener((buttonView, isChecked) -> {
+                gameSettings.setSoundEnabled(isChecked);
+            });
+            settings.vibrationSwitch.setOnToggledListener((buttonView, isChecked) -> {
+                gameSettings.setVibrationEnabled(isChecked);
+            });
+
+            dialog.show();
+
+        });
 
         customDialogFirst.continuee.setOnClickListener(v1 -> {
             gameSettings.vibrate();
             gameSettings.playSound(gameSettings.getDialogBtnSound());
             binding.card.setVisibility(View.VISIBLE);
-            binding.namePlayer.setVisibility(View.VISIBLE);
+            if (mediaPlayer1 != null && isPlaying1 && isSwitchOn1) {
+                mediaPlayer1.setLooping(true);
+                mediaPlayer1.start();
+            }
 
             binding.timer.setBase(SystemClock.elapsedRealtime() - elapsedTime);
             binding.timer.start();
@@ -576,7 +665,6 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
             gameSettings.vibrate();
             gameSettings.playSound(gameSettings.getDialogBtnSound());
             binding.card.setVisibility(View.INVISIBLE);
-            binding.namePlayer.setVisibility(View.INVISIBLE);
 
             AlertDialog.Builder builderSecond = new AlertDialog.Builder(this);
             CustomdialogQuitBinding customDialogSecond = CustomdialogQuitBinding.inflate(getLayoutInflater());
@@ -593,10 +681,13 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
                 gameSettings.vibrate();
                 gameSettings.playSound(gameSettings.getDialogBtnSound());
                 binding.card.setVisibility(View.VISIBLE);
-                binding.namePlayer.setVisibility(View.VISIBLE);
                 binding.pauseResume.setBackgroundResource(R.drawable.pause_btn);
                 binding.timer.setBase(SystemClock.elapsedRealtime() - elapsedTime);
                 binding.timer.start();
+                if (mediaPlayer1 != null && isPlaying1 && isSwitchOn1) {
+                    mediaPlayer1.setLooping(true);
+                    mediaPlayer1.start();
+                }
                 dialogSecond.dismiss();
                 dialogFirst.dismiss();
 
@@ -623,11 +714,6 @@ public class ActivityGameScreen extends AppCompatActivity implements GameControl
         super.onResume();
         if (isPauseDialogShown) {
             showPauseDialog();
-        }
-
-        if (mediaPlayer1 != null && isPlaying1 && isSwitchOn1) {
-            mediaPlayer1.setLooping(true);
-            mediaPlayer1.start();
         }
 
     }

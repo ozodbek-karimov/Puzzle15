@@ -9,16 +9,25 @@
     android:orientation="vertical"
     tools:context=".ActivityGameScreen">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/confetti_animation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_progress="0.5"
+        android:visibility="gone"
+        app:lottie_rawRes="@raw/confetti2" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="9dp"
         android:layout_marginEnd="9dp"
         android:layout_weight="1.5"
         android:orientation="horizontal">
 
-        <View
+        <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5" />
@@ -31,7 +40,7 @@
             android:background="@drawable/shuffle_button"
             />
 
-        <View
+        <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2" />
@@ -72,23 +81,11 @@
     </LinearLayout>
 
 
-    <LinearLayout
+    <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center"
-        android:layout_weight="3.2" >
-
-        <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
-            tools:ignore="MissingClass">
-        </com.google.android.gms.ads.AdView>
-
-    </LinearLayout>
+        android:layout_weight="1.9" >
+    </Space>
 
 
     <androidx.cardview.widget.CardView
@@ -100,8 +97,10 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="40dp"
         android:elevation="40dp"
+        android:outlineAmbientShadowColor="#AA00FF"
+        android:outlineSpotShadowColor="#AA00FF"
         app:cardCornerRadius="20dp"
         app:cardElevation="40dp"
         android:visibility="visible">
@@ -445,46 +444,29 @@
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:id="@+id/namePlayer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="30dp"
-        android:orientation="horizontal"
-        android:visibility="visible">
+        android:gravity="center"
+        android:layout_marginBottom="9dp"
+        android:layout_weight="3.2" >
 
-
-        <TextView
-            android:id="@+id/player_name"
-            android:layout_width="0dp"
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginStart="15dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/fredoka_one"
-            android:gravity="left | center"
-            android:maxLength="20"
-            android:maxLines="1"
-            android:text="MuhammadYusufxon"
-            android:textColor="#ffff"
-            android:textSize="22sp"
-            app:drawableLeftCompat="@drawable/player"
-            tools:ignore="NestedWeights,RtlHardcoded" />
-
-
+            ads:adSize="LARGE_BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            tools:ignore="MissingClass">
+        </com.google.android.gms.ads.AdView>
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.4" />
 
     <LinearLayout
         android:id="@+id/steps"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="1"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -514,9 +496,5 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3" />
 
 </LinearLayout>

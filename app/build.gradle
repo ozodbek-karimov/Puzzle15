@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'pl.ozodbek.puzzle15'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "pl.ozodbek.puzzle15"
-        minSdk 22
-        targetSdk 32
+        minSdk 24
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 

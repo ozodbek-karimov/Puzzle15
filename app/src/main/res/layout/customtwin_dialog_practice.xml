@@ -30,7 +30,7 @@
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:lottie_progress="1.5"
-                app:lottie_rawRes="@raw/winner_anim" />
+                app:lottie_rawRes="@raw/winner_animation" />
 
 
             <TextView

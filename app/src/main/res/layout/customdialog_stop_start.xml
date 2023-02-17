@@ -21,16 +21,37 @@
             android:padding="5dp">
 
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/play_animation"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:gravity="center"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_progress="0.5"
-                app:lottie_rawRes="@raw/playanim" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/play_animation"
+                    android:layout_width="0dp"
+                    android:layout_height="160dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    android:layout_margin="10dp"
+                    app:lottie_progress="0.5"
+                    app:lottie_rawRes="@raw/playanim" />
+
+                <ImageView
+                    android:id="@+id/settings_game"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="8dp"
+                    android:layout_weight="0.3"
+                    android:src="@drawable/settings_icon" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -54,22 +75,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:backgroundTint="#DD3C3C"
-                android:text="Continue"
-                app:cornerRadius="8dp"
+                android:backgroundTint="#62D31B"
+                android:textAllCaps="false"
+                android:text="Yes, play"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:cornerRadius="8dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/quit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:cornerRadius="8dp"
-                android:backgroundTint="#62D31B"
-                android:text="@string/quit_game"
+                android:backgroundTint="#DD3C3C"
+                android:text="No,finish"
+                android:textAllCaps="false"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:cornerRadius="8dp" />
 
 
         </LinearLayout>

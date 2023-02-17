@@ -20,26 +20,18 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/play_animation"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:gravity="center"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_progress="0.5"
-                app:lottie_rawRes="@raw/home_anim" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/save"
-                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="40dp"
                 android:fontFamily="@font/fredoka_one"
+                android:text="Are you sure to finish ?"
                 android:textColor="#E5EFEE"
-                android:textSize="27sp" />
+                android:textSize="30sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -54,21 +46,21 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:backgroundTint="#CC4D4D"
-                android:text="@string/cancel"
+                android:text="No,cancel"
                 android:textSize="18sp"
-                app:cornerRadius="8dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:cornerRadius="8dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/finish"
-                app:cornerRadius="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:backgroundTint="#62D31B"
-                android:text="finish"
+                android:text="Yes,finish"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:cornerRadius="8dp" />
 
 
         </LinearLayout>

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:app1="http://schemas.android.com/apk/res-auto"
-    xmlns:app2="http://schemas.android.com/apk/res-auto"
-    xmlns:app3="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,12 +18,13 @@
         android:id="@+id/logoId"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:background="@drawable/gradient"
-        android:scaleType="centerInside"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
         android:layout_weight="1"
+        android:background="@drawable/gradient"
+        android:scaleType="centerInside"
         android:src="@drawable/gif4" />
 
     <LinearLayout
@@ -37,69 +35,153 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.cardview.widget.CardView
             android:id="@+id/start_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:backgroundTint="#62D31B"
-            android:drawableLeft="@drawable/play_custom"
-            android:gravity="center"
-            android:text="Start"
-            android:textColor="#232121"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            app:cornerRadius="15dp" />
+            android:outlineAmbientShadowColor="#09FA21"
+            android:outlineSpotShadowColor="#11FF00"
+            app:cardBackgroundColor="#00FFFFFF"
+            app:cardCornerRadius="100dp"
+            tools:targetApi="p">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/practice_game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:backgroundTint="#7B1CFF"
-            android:drawableLeft="@drawable/practice"
-            android:gravity="center"
-            android:text="Practice"
-            android:textColor="#232121"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            app1:cornerRadius="15dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:src="@drawable/play" />
+        </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/settings_game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:backgroundTint="#FA832A"
-            android:drawableLeft="@drawable/settings_icon"
-            android:gravity="center"
-            android:text="Settings"
-            android:textColor="#232121"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            app2:cornerRadius="15dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/exit_game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:backgroundTint="#CC4D4D"
-            android:drawableLeft="@drawable/home_buttton"
-            android:gravity="center"
-            android:text="exit"
-            android:textColor="#232121"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            app3:cornerRadius="15dp" />
+        <!-- <com.google.android.material.button.MaterialButton
+             android:id="@+id/start_game"
+             android:layout_width="match_parent"
+             android:layout_marginStart="50dp"
+             android:layout_marginEnd="50dp"
+             android:layout_height="0dp"
+             android:layout_weight="1"
+             android:layout_gravity="center"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="20dp"
+             android:backgroundTint="#62D31B"
+             android:drawableLeft="@drawable/play_custom"
+             android:gravity="center"
+             android:text="Start"
+             android:textColor="#232121"
+             android:textSize="26sp"
+             android:textStyle="bold"
+             app:cornerRadius="25dp" />
+
+         <com.google.android.material.button.MaterialButton
+             android:id="@+id/practice_game"
+             android:layout_width="match_parent"
+             android:layout_marginStart="50dp"
+             android:layout_marginEnd="50dp"
+             android:layout_height="0dp"
+             android:layout_weight="1"
+             android:layout_gravity="center"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="20dp"
+             android:backgroundTint="#7B1CFF"
+             android:drawableLeft="@drawable/practice"
+             android:gravity="center"
+             android:text="Practice"
+             android:textColor="#232121"
+             android:textSize="26sp"
+             android:textStyle="bold"
+             app1:cornerRadius="25dp" />
+
+         <com.google.android.material.button.MaterialButton
+             android:id="@+id/settings_game"
+             android:layout_width="match_parent"
+             android:layout_marginStart="50dp"
+             android:layout_marginEnd="50dp"
+             android:layout_height="0dp"
+             android:layout_weight="1"
+             android:layout_gravity="center"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="20dp"
+             android:backgroundTint="#FA832A"
+             android:drawableLeft="@drawable/settings_icon"
+             android:gravity="center"
+             android:text="Settings"
+             android:textColor="#232121"
+             android:textSize="26sp"
+             android:textStyle="bold"
+             app2:cornerRadius="25dp" />
+
+         <com.google.android.material.button.MaterialButton
+             android:id="@+id/exit_game"
+             android:layout_width="match_parent"
+             android:layout_marginStart="50dp"
+             android:layout_marginEnd="50dp"
+             android:layout_height="0dp"
+             android:layout_weight="1"
+             android:layout_gravity="center"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="20dp"
+             android:backgroundTint="#CC4D4D"
+             android:drawableLeft="@drawable/home_buttton"
+             android:gravity="center"
+             android:text="exit"
+             android:textColor="#232121"
+             android:textSize="26sp"
+             android:textStyle="bold"
+             app3:cornerRadius="25dp" />-->
 
     </LinearLayout>
-    <Space
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.9" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
+        <ImageView
+            android:id="@+id/rating_game"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/about_game" />
+
+        <ImageView
+            android:id="@+id/about_game"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:src="@drawable/rating_game" />
+
+        <ImageView
+            android:id="@+id/practice_game"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:src="@drawable/practice" />
+
+        <ImageView
+            android:id="@+id/settings_game"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/settings_icon" />
+
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
+
+    </LinearLayout>
+<Space
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.1"/>
+
 </LinearLayout>
